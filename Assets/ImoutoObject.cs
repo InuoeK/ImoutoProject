@@ -14,6 +14,15 @@ public enum IMOUTO_STATE
     HAPPY
 }
 
+struct SwayValues
+{
+    public float angry;
+    public float interested;
+    public float annoyed;
+    public float happy;
+
+}
+
 public class ImoutoObject : MonoBehaviour
 {
 
@@ -24,9 +33,13 @@ public class ImoutoObject : MonoBehaviour
 
     public string imoutoName;
 
+
+    SwayValues sway = new SwayValues();
+
     public void SetState(IMOUTO_STATE a_state)
     {
         imoutoState = a_state;
+
     }
 
     // Use this for initialization
@@ -43,13 +56,15 @@ public class ImoutoObject : MonoBehaviour
     public void Respond(string a_playerText)
     {
         //Process the user's text
-        string response="";
+        string response = "";
 
         response = GetComponent<TextProcessor>().ProcessTextAndGenerateResponse(a_playerText);
 
         GameObject.Find("List_TextBubble").GetComponent<List_ChatBubbleScript>().AddChatBubble(response, SPEAKER_TYPE.IMOUTO);
 
     }
+
+
 
 
 

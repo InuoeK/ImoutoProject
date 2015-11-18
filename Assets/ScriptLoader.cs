@@ -12,22 +12,26 @@ public class ScriptLoader : MonoBehaviour
     {
         try
         {
+            int counter = 0;
             StreamReader sr = new StreamReader(a_filepath);
             using (sr)
             {
                 do
                 {
                     string line = sr.ReadLine();
-                    Debug.Log(line);
+                    //Debug.Log(line);
+                    counter++;
                     a_scriptList.Add(line);
                 }
                 while (!sr.EndOfStream) ;
                 sr.Close();
+                Debug.Log(counter + " strings loaded from: " + a_filepath);
                 return true;
             }
         }
         catch (System.Exception e) { Debug.Log("Something Happened: " + e); }
 
+        Debug.Log("Failed to load: " + a_filepath);
         return false;
     }
 }
