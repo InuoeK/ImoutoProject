@@ -25,7 +25,7 @@ public class ScriptLoader : MonoBehaviour
                 }
                 while (!sr.EndOfStream) ;
                 sr.Close();
-                Debug.Log(counter + " strings loaded from: " + a_filepath);
+                //Debug.Log(counter + " strings loaded from: " + a_filepath);
                 return true;
             }
         }
