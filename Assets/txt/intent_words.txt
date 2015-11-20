@@ -1,0 +1,16 @@
+browse
+buy
+get
+go
+look
+lounge
+obtain
+play
+purchase
+read
+rest
+search
+sell
+sit
+wait
+you

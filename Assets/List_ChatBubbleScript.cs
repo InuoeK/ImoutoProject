@@ -4,6 +4,7 @@ using System.Collections;
 
 public class List_ChatBubbleScript : MonoBehaviour
 {
+    int numMessages = 0;
 
     public int maxMessages = 100;
 
@@ -14,6 +15,7 @@ public class List_ChatBubbleScript : MonoBehaviour
         GameObject temp_chatBubble = Instantiate(Resources.Load("Textbubble") as GameObject);
         temp_chatBubble.GetComponent<ChatBubbleScript>().Initialize(a_text, a_spt);
 
+        temp_chatBubble.GetComponentInChildren<SetNumber>().SetTextNumber(numMessages++);
 
 
         if (transform.childCount > maxMessages)

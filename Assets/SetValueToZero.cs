@@ -8,8 +8,15 @@ public class SetValueToZero : MonoBehaviour {
 
 	public void SetToZero()
     {
-        Canvas.ForceUpdateCanvases();
+
         list.GetComponent<ScrollRect>().verticalScrollbar.value = -10.0f;
-        Canvas.ForceUpdateCanvases();
+
+
+        Debug.Log("Scroll bar value: " + list.GetComponent<ScrollRect>().verticalScrollbar.value);
+    }
+
+    void Update()
+    {
+       // Debug.Log(list.GetComponent<ScrollRect>().verticalScrollbar.value);
     }
 }

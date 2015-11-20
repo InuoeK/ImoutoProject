@@ -9,6 +9,7 @@ donut
 donuts
 dress
 dresses
+eat
 food
 free time
 game
@@ -19,6 +20,7 @@ ice cream
 ice-cream
 icecream
 leisure
+lunch
 restaurant
 room
 shirt

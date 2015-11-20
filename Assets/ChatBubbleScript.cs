@@ -39,7 +39,16 @@ public class ChatBubbleScript : MonoBehaviour
         GetComponentInChildren<Text>().text = temp_speakerPrefix + "\n\t" + a_text;
 
         SetTransforms();
-        CheckMessageLimit();        
+
+
+        StartCoroutine(Wait());
+       
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(.03f);
+        CheckMessageLimit();
     }
 
 
@@ -67,6 +76,7 @@ public class ChatBubbleScript : MonoBehaviour
         {
             Destroy(GameObject.Find("List_TextBubble").transform.GetChild(0).gameObject);
         }
+
         GameObject.Find("ChatScrollBar").GetComponent<SetValueToZero>().SetToZero();
     }
 }
