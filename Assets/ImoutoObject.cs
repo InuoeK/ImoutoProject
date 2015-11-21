@@ -4,50 +4,63 @@ using System.Collections.Generic;
 
 
 
-
-public enum IMOUTO_STATE
+public class ImoutoFSM
 {
-    NEUTRAL,
-    ANGRY,
-    ANNOYED,
-    INTERESTED,
-    HAPPY
-}
+    private FSMSystem fsm;
 
-struct SwayValues
-{
-    public float angry;
-    public float interested;
-    public float annoyed;
-    public float happy;
+    public void SetTransition(Transition a_t) { fsm.PerformTransition(a_t); }
 
+    public void Start()
+    {
+        InitializeFSM();
+    }
+
+    private void InitializeFSM()
+    {
+        NeutralState neutral = new NeutralState();
+        neutral.Low = -10.0f;
+        neutral.High = 10.0f;
+
+
+        fsm = new FSMSystem();
+
+        fsm.AddState(neutral);
+
+
+        Debug.Log("Imouto FSM successfully Initialized");
+
+        DebugLogText dblt = new DebugLogText();
+
+        dblt.DebugLog("Imouto FSM successfully Initialized");
+
+
+    }
 }
 
 public class ImoutoObject : MonoBehaviour
 {
 
 
-
-    IMOUTO_STATE imoutoState;
+    private float sway;
+    public float Sway { get { return sway; } }
 
 
     public string imoutoName;
 
 
-    SwayValues sway = new SwayValues();
-
-    public void SetState(IMOUTO_STATE a_state)
-    {
-        imoutoState = a_state;
-
-    }
-
     // Use this for initialization
     void Start()
     {
-        imoutoState = IMOUTO_STATE.NEUTRAL;
+
+
     }
 
+
+
+    void Update()
+    {
+
+    }
 
 
     /// <summary>
