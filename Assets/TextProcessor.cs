@@ -85,8 +85,8 @@ public class TextProcessor : MonoBehaviour
 
         if (ttpController.CheckIfTTPTaskFinished() && textToProcess != null)
         {
-   //         Debug.Log("Time taken: " + (timer - Time.realtimeSinceStartup) * -1);
-
+            //         Debug.Log("Time taken: " + (timer - Time.realtimeSinceStartup) * -1);
+            Debug.Log("Task completed");
             NLPProcessScore();
 
             ttpController.DumpAllMatchedWords();
@@ -134,7 +134,11 @@ public class TextProcessor : MonoBehaviour
         //Debug.Log("Negative Reaction");
         else
             dblt.DebugLog("Neutral Reaction, Sway Value: " + swayValue);
-       // Debug.Log("Neutral Reaction");
+        // Debug.Log("Neutral Reaction");
+
+        gameObject.GetComponent<ImoutoObject>().Sway = swayValue;
+
+        Debug.Log("Current Sway: " + gameObject.GetComponent<ImoutoObject>().Sway);
     }
 
     void MainThreadCheck()
@@ -368,7 +372,7 @@ public class ThreadedTextProcessing : MultiThreading
 
     public void ResetMatchedStrings()
     {
-        Debug.Log("Matched Strings reset");
+      //  Debug.Log("Matched Strings reset");
         matchedStrings.Clear();
     }
 

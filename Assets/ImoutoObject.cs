@@ -4,54 +4,25 @@ using System.Collections.Generic;
 
 
 
-public class ImoutoFSM
-{
-    private FSMSystem fsm;
 
-    public void SetTransition(Transition a_t) { fsm.PerformTransition(a_t); }
-
-    public void Start()
-    {
-        InitializeFSM();
-    }
-
-    private void InitializeFSM()
-    {
-        NeutralState neutral = new NeutralState();
-        neutral.Low = -10.0f;
-        neutral.High = 10.0f;
-
-
-        fsm = new FSMSystem();
-
-        fsm.AddState(neutral);
-
-
-        Debug.Log("Imouto FSM successfully Initialized");
-
-        DebugLogText dblt = new DebugLogText();
-
-        dblt.DebugLog("Imouto FSM successfully Initialized");
-
-
-    }
-}
 
 public class ImoutoObject : MonoBehaviour
 {
 
 
     private float sway;
-    public float Sway { get { return sway; } }
+    public float Sway { get { return this.sway; } set { this.sway += value; } }
 
 
     public string imoutoName;
+
+    ImoutoFSM ifsm;
 
 
     // Use this for initialization
     void Start()
     {
-
+        ifsm = new ImoutoFSM();
 
     }
 

@@ -7,10 +7,10 @@ using System.Collections.Generic;
 public enum Transition
 {
     NullTransition = 0,
-    Transition_Angry,
-    Transition_Annoyed,
-    Transition_Interested,
-    Transition_Happy,
+    Angry,
+    Annoyed,
+    Interested,
+    Happy,
 }
 
 public enum StateID
@@ -51,6 +51,7 @@ public class FSMSystem
             states.Add(a_state);
             currentState = a_state;
             currentStateID = a_state.ID;
+            Debug.Log("Current State assigned to: " + a_state.ID.ToString());
         }
 
         states.Add(a_state);
@@ -80,20 +81,24 @@ public class FSMSystem
     {
         if (trans == Transition.NullTransition)
         {
+            Debug.Log("hello2");
             return;
         }
 
         StateID id = currentState.GetOutputState(trans);
         if (id == StateID.NullState)
         {
+            Debug.Log("hello3");
             return;
         }
 
         currentStateID = id;
         foreach (FSMState state in states)
         {
+            Debug.Log(state.ID.ToString() + " " + currentStateID.ToString());
             if (state.ID == currentStateID)
             {
+                Debug.Log("Performing Transition");
                 currentState.DoBeforeLeaving();
 
                 currentState = state;
@@ -102,6 +107,9 @@ public class FSMSystem
                 break;
             }
         }
+
+        Debug.Log("Transition Error: Output State does not exist");
+        return;
     }
 
 
@@ -181,37 +189,5 @@ public abstract class FSMState
 
 
 
-public class NeutralState : FSMState
-{
-    private float sway;
-    public float Sway { get { return sway; } }
-    private float high;
-    public float High { get { return high; } set { high = value; } }
 
-    private float low;
-    public float Low { get { return low; } set { low = value; } }
-
-    public NeutralState()
-    {
-        stateID = StateID.Neutral;
-    }
-
-
-    public override void Reason(GameObject npc)
-    {
-        if (sway > High)
-        {
-            // Transition to Interested
-        }
-        else if (sway < Low)
-        {
-            // Transition to Annoyed
-        }
-    }
-
-    public override void Act(GameObject npc)
-    {
-        // Do stuff here
-    }
-}
 
