@@ -22,7 +22,7 @@ public class TextProcessor : MonoBehaviour
 
     bool running;
 
-    List<string> fillerResponses = new List<string>();
+
 
 
 
@@ -67,6 +67,8 @@ public class TextProcessor : MonoBehaviour
     {
         textToProcess = a_stringToProcess;
 
+
+
         return "debug";
     }
 
@@ -95,6 +97,8 @@ public class TextProcessor : MonoBehaviour
             textInput.active = true;
             textToProcess = null;
 
+            // Get Imouto to Generate response here
+            gameObject.GetComponent<ImoutoObject>().GenerateResponse();
         }
     }
 
