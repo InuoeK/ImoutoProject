@@ -24,6 +24,10 @@ illogical
 interfere
 interject
 interrupt
+hate
+dislike
+disgust
+detest
 irritate
 jab
 jail

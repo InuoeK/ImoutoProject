@@ -18,9 +18,13 @@ public class ImoutoObject : MonoBehaviour
 
     ImoutoFSM ifsm;
 
+    List<string> noKeywordResponses = new List<string>();
     List<string> neutralResponses = new List<string>();
+    List<string> annoyedResponses = new List<string>();
+    List<string> positiveResponses = new List<string>();
 
     List<string> negativeResponsesOne = new List<string>();
+
 
 
     // Use this for initialization
@@ -37,6 +41,8 @@ public class ImoutoObject : MonoBehaviour
         string filepath = Application.dataPath + "/txt/";
         sl.LoadScriptToList(filepath + "responseNeutral.txt", neutralResponses);
         sl.LoadScriptToList(filepath + "responseNegative1.txt", negativeResponsesOne);
+        sl.LoadScriptToList(filepath + "responseNoKeyword.txt", noKeywordResponses);
+        sl.LoadScriptToList(filepath + "responsePositive.txt", positiveResponses);
     }
 
 
@@ -60,17 +66,36 @@ public class ImoutoObject : MonoBehaviour
 
     bool CheckQuestionResponse(string a_s)
     {
-        if (a_s.Contains("Do") || a_s.Contains("How"))
+        if (a_s.Contains("Do") || a_s.Contains("How") || a_s.Contains("What") || a_s.Contains("Could"))
         {
             return true;
         }
         return false;
     }
 
-    public void GenerateResponse()
+    public void GenerateResponse(float calculatedSway, int numKeywords)
     {
-        int rand = Random.Range(0, neutralResponses.Count);
-        string response = neutralResponses[rand];
+        Debug.Log("Generating Response");
+ 
+        string response = "";
+
+        if (numKeywords <= 0 || calculatedSway == 0f)
+        {
+            int rand = Random.Range(0, noKeywordResponses.Count);
+            response = noKeywordResponses[rand];
+        }  
+        else if (calculatedSway < 0f) // Negative response
+        {
+            int rand = Random.Range(0, negativeResponsesOne.Count);
+            response = negativeResponsesOne[rand];
+        }
+        else if (calculatedSway > 0f) // Positive response
+        {
+            int rand = Random.Range(0, positiveResponses.Count);
+            response = positiveResponses[rand];
+        }
+ 
+
 
 
 

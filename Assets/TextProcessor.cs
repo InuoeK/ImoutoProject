@@ -42,8 +42,8 @@ public class TextProcessor : MonoBehaviour
         textToProcess = null;
         string filepath = Application.dataPath + "/txt/";
 
-        ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "test_modifier_words_pos.txt", "Positive Modifier"));
-        ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "test_modifier_words_neg.txt", "Negative Modifier"));
+        ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "modifierWordsPositive.txt", "Positive Modifier"));
+        ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "modifierWordsNegative.txt", "Negative Modifier"));
         ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "keyword_interested.txt", "Interested Keywords"));
         ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "negative_expletives.txt", "Swear Words"));
         ttpController.AddTTPModule(new ThreadedTextProcessing(filepath + "intent_words.txt", "Intent Words"));
@@ -89,7 +89,7 @@ public class TextProcessor : MonoBehaviour
         {
             //         Debug.Log("Time taken: " + (timer - Time.realtimeSinceStartup) * -1);
             Debug.Log("Task completed");
-            NLPProcessScore();
+            NLPProcessScoreAndGenerateResponse();
 
             ttpController.DumpAllMatchedWords();
 
@@ -97,12 +97,11 @@ public class TextProcessor : MonoBehaviour
             textInput.active = true;
             textToProcess = null;
 
-            // Get Imouto to Generate response here
-            gameObject.GetComponent<ImoutoObject>().GenerateResponse();
+         
         }
     }
 
-    void NLPProcessScore()
+    void NLPProcessScoreAndGenerateResponse()
     {
         float swayValue = 0f;
 
@@ -143,6 +142,9 @@ public class TextProcessor : MonoBehaviour
         gameObject.GetComponent<ImoutoObject>().Sway = swayValue;
 
         Debug.Log("Current Sway: " + gameObject.GetComponent<ImoutoObject>().Sway);
+
+        // Get Imouto to Generate response here
+        gameObject.GetComponent<ImoutoObject>().GenerateResponse(swayValue, numKeywords);
     }
 
     void MainThreadCheck()

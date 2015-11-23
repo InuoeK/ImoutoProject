@@ -81,14 +81,14 @@ public class FSMSystem
     {
         if (trans == Transition.NullTransition)
         {
-            Debug.Log("hello2");
+            Debug.Log("Null Transition not allowed");
             return;
         }
 
         StateID id = currentState.GetOutputState(trans);
         if (id == StateID.NullState)
         {
-            Debug.Log("hello3");
+            Debug.Log("Transition to Null State not allowed");
             return;
         }
 

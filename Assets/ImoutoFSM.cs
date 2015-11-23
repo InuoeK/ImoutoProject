@@ -97,6 +97,7 @@ public class ImoutoFSM : MonoBehaviour
         neutral.Low = -10f;
         neutral.AddTransition(Transition.Interested, StateID.Interested);
         neutral.AddTransition(Transition.Annoyed, StateID.Annoyed);
+        
 
         EmotionState interested = new EmotionState(StateID.Interested);
         interested.High = 10f;
