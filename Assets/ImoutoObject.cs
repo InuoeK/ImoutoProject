@@ -75,7 +75,7 @@ public class ImoutoObject : MonoBehaviour
 
     public void GenerateResponse(float calculatedSway, int numKeywords)
     {
-        Debug.Log("Generating Response");
+       // Debug.Log("Generating Response");
  
         string response = "";
 
@@ -94,11 +94,6 @@ public class ImoutoObject : MonoBehaviour
             int rand = Random.Range(0, positiveResponses.Count);
             response = positiveResponses[rand];
         }
- 
-
-
-
-
         // Simple check for appending extras
         if (CheckQuestionResponse(response))
         {

@@ -11,6 +11,8 @@ public enum Transition
     Annoyed,
     Interested,
     Happy,
+    Lose,
+    Win
 }
 
 public enum StateID
@@ -21,6 +23,8 @@ public enum StateID
     Annoyed,
     Interested,
     Happy,
+    Lose,
+    Win
 }
 
 public class FSMSystem
@@ -95,16 +99,16 @@ public class FSMSystem
         currentStateID = id;
         foreach (FSMState state in states)
         {
-            Debug.Log(state.ID.ToString() + " " + currentStateID.ToString());
+           // Debug.Log(state.ID.ToString() + " " + currentStateID.ToString());
             if (state.ID == currentStateID)
             {
-                Debug.Log("Performing Transition");
+                Debug.Log("Performing Transition to: " + state.ID.ToString());
                 currentState.DoBeforeLeaving();
 
                 currentState = state;
 
                 currentState.DoBeforeEntering();
-                break;
+                return;
             }
         }
 

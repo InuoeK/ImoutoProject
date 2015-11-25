@@ -299,7 +299,7 @@ public class ThreadedTextProcessingController
             {
                 temp = temp + " " + (k + 1) + ": " + ttpList[i].matchedStrings[k] + "\t";
             }
-            Debug.Log(ttpList[i].name + " Matched strings: " + temp + "\n\n");
+            //Debug.Log(ttpList[i].name + " Matched strings: " + temp + "\n\n");
         }
 
         // Debug.Log("Beginning Dump of all Matched Strings : " + final);
